@@ -1,11 +1,28 @@
 const products = [
-    { id: 1, name: 'Iphone 11 Pro Max', categoryId: 1, description: 'Потужний смартфон з великим дисплеєм та потрійною камерою.' },
-    { id: 2, name: 'Iphone 14 Pro Max', categoryId: 1, description: 'Остання модель iPhone з найновішими технологіями.' },
-    { id: 3, name: 'Asus x515', categoryId: 2, description: 'Легкий і потужний ноутбук для роботи та розваг.' },
-    { id: 4, name: 'MacBook Pro', categoryId: 2, description: 'Популярний ноутбук для професіоналів з екраном Retina.' },
-    { id: 5, name: 'ipad Mini 10', categoryId: 3, description: 'Компактний планшет з підтримкою Apple Pencil.' },
-    { id: 6, name: 'Samsung Galaxy Tablet 10', categoryId: 3, description: 'Планшет на базі Android з високоякісним дисплеєм.' }
-];
+    { id: 1, name: 'Iphone 11 Pro Max', 
+    categoryId: 1,
+     description: 'Потужний смартфон з великим дисплеєм та потрійною камерою.' },
+
+    { id: 2, name: 'Iphone 14 Pro Max', 
+    categoryId: 1, 
+    description: 'Остання модель iPhone з найновішими технологіями.' },
+
+    { id: 3, name: 'Asus x515',
+     categoryId: 2, 
+     description: 'Легкий і потужний ноутбук для роботи та розваг.' },
+
+    { id: 4, name: 'MacBook Pro',
+     categoryId: 2, 
+     description: 'Популярний ноутбук для професіоналів з екраном Retina.' },
+
+    { id: 5, name: 'ipad Mini 10', 
+    categoryId: 3, 
+    description: 'Компактний планшет з підтримкою Apple Pencil.' },
+
+    { id: 6, name: 'Samsung Galaxy Tablet 10', 
+    categoryId: 3, 
+    description: 'Планшет на базі Android з високоякісним дисплеєм.' }
+]
 
 function showProducts(categoryId) {
     const productsContainer = document.getElementById('products-container')
@@ -18,9 +35,9 @@ function showProducts(categoryId) {
         productElement.innerHTML = product.name
         productElement.addEventListener('click', () => {
             showProductInfo(product)
-        });
+        })
 
-        productsContainer.appendChild(productElement)
+        productsContainer.appendChild(productElement);
     })
 }
 
@@ -38,7 +55,7 @@ function showProductInfo(product) {
     buyButton.innerHTML = 'Buy'
     buyButton.addEventListener('click', () => {
         showOrderForm(product)
-    });
+    })
 
     productInfo.appendChild(buyButton)
 
@@ -57,7 +74,7 @@ function showOrderForm(product) {
             const orderInfo = getOrderInfo(product)
             displayOrderInfo(orderInfo)
         }
-    });
+    })
 
     const nameLabel = document.createElement('label')
     nameLabel.innerHTML = 'ПІБ покупця:'
@@ -82,7 +99,7 @@ function showOrderForm(product) {
     cityOption4.innerHTML = 'Павлоград'
     const cityOption5 = document.createElement('option')
     cityOption5.innerHTML = 'Харків'
- 
+
     citySelect.appendChild(cityOption1)
     citySelect.appendChild(cityOption2)
     citySelect.appendChild(cityOption3)
@@ -99,12 +116,20 @@ function showOrderForm(product) {
     deliveryLabel.appendChild(deliveryInput)
 
     const paymentLabel = document.createElement('label')
-    paymentLabel.innerHTML = 'Післяплати або оплати банківської картки:'
-    const paymentInput = document.createElement('input')
-    paymentInput.setAttribute('type', 'text')
-    paymentInput.setAttribute('name', 'payment')
-    paymentInput.setAttribute('required', true)
-    paymentLabel.appendChild(paymentInput)
+    paymentLabel.innerHTML = 'Післяплата або оплати банківської картки:'
+    const paymentSelect = document.createElement('select')
+    paymentSelect.setAttribute('name', 'payment')
+    paymentSelect.setAttribute('required', true)
+    const paymentOption1 = document.createElement('option')
+    paymentOption1.value = 'cash_on_delivery'
+    paymentOption1.innerHTML = 'Cash on Delivery'
+    const paymentOption2 = document.createElement('option')
+    paymentOption2.value = 'credit_card'
+    paymentOption2.innerHTML = 'Credit Card'
+
+    paymentSelect.appendChild(paymentOption1)
+    paymentSelect.appendChild(paymentOption2)
+    paymentLabel.appendChild(paymentSelect)
 
     const quantityLabel = document.createElement('label')
     quantityLabel.innerHTML = 'Кількість продукції, що купується:'
@@ -118,7 +143,6 @@ function showOrderForm(product) {
     commentLabel.innerHTML = 'Коментар до замовлення:'
     const commentInput = document.createElement('textarea')
     commentInput.setAttribute('name', 'comment')
-    commentInput.setAttribute('required', true)
     commentLabel.appendChild(commentInput)
 
     const submitButton = document.createElement('button')
@@ -140,7 +164,7 @@ function validateOrderForm() {
     const nameInput = document.querySelector('input[name="name"]')
     const citySelect = document.querySelector('select[name="city"]')
     const deliveryInput = document.querySelector('input[name="delivery"]')
-    const paymentInput = document.querySelector('input[name="payment"]')
+    const paymentSelect = document.querySelector('select[name="payment"]')
     const quantityInput = document.querySelector('input[name="quantity"]')
     const commentInput = document.querySelector('textarea[name="comment"]')
 
@@ -148,12 +172,12 @@ function validateOrderForm() {
         nameInput.value.trim() === '' ||
         citySelect.value.trim() === '' ||
         deliveryInput.value.trim() === '' ||
-        paymentInput.value.trim() === '' ||
+        paymentSelect.value.trim() === '' ||
         quantityInput.value.trim() === '' ||
         commentInput.value.trim() === ''
     ) {
         alert('Please fill in all required fields.')
-        return false
+        return false;
     }
 
     const quantityValue = parseInt(quantityInput.value)
@@ -195,7 +219,7 @@ function displayOrderInfo(orderInfo) {
 
     const city = document.createElement('p')
     city.textContent = `City: ${orderInfo.city}`
-    orderInfoContainer.appendChild(city);
+    orderInfoContainer.appendChild(city)
 
     const delivery = document.createElement('p')
     delivery.textContent = `Delivery: ${orderInfo.delivery}`
@@ -218,20 +242,20 @@ function getOrderInfo(product) {
     const nameInput = document.querySelector('input[name="name"]')
     const citySelect = document.querySelector('select[name="city"]')
     const deliveryInput = document.querySelector('input[name="delivery"]')
-    const paymentInput = document.querySelector('input[name="payment"]')
+    const paymentSelect = document.querySelector('select[name="payment"]')
     const quantityInput = document.querySelector('input[name="quantity"]')
     const commentInput = document.querySelector('textarea[name="comment"]')
 
     const orderInfo = {
-        Name: product.name,
+        productName: product.name,
         productDescription: product.description,
         name: nameInput.value,
         city: citySelect.value,
         delivery: deliveryInput.value,
-        payment: paymentInput.value,
+        payment: paymentSelect.value,
         quantity: quantityInput.value,
         comment: commentInput.value
-    };
+    }
 
     return orderInfo
 }
