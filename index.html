@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="internetshop2.css">
+    <title>Online shop</title>
+</head>
+<body>
+
+    <div class="shop-container">
+        <div class="categories">
+            <h2>Categories</h2>
+            <ul>
+                <li><a href="#" onclick="showProducts(1)">Cell phones</a></li>
+                <li><a href="#" onclick="showProducts(2)">Laptops</a></li>
+                <li><a href="#" onclick="showProducts(3)">Tablets</a></li>
+            </ul>
+        </div>
+
+        <div class="products">
+            <h2>Products</h2>
+            <ul id="products-container"></ul>
+        </div>
+
+        <div class="product-info">
+            <h2>Product info</h2>
+            <div id="product-info-container"></div>
+        </div>
+    </div>
+
+    <div id="order-form-container"></div>
+    <div id="order-info-container"></div>
+    <script src="internetshop2.js"></script>
+</body>
+</html>
